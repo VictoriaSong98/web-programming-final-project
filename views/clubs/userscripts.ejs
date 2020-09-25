@@ -1,0 +1,34 @@
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+
+  $('#clubsinfo').on('submit', function(event) {
+    const div = $(this);
+    event.preventDefault();
+
+
+    <%_ if (club.memberList.indexOf(user._id) < 0) { -%>
+      <%_console.log(club.memberList)-%>
+      <%_ club.memberList.push(user._id); -%>
+      <%_console.log(club.memberList)-%>
+      <%_ newMemberList = Object.entries(club.memberList).push(user._id)-%>
+      <%_ console.log(club._id); -%>
+
+
+
+
+      $.ajax({method: 'put', url: '/clubs/<%= club._id -%>/newMember'})
+
+        .done(() => alert('Join in successfully.'))
+        <%_ } else {-%>
+        .fail(error => alert('You are already in this club.'));
+
+
+   <%_ }-%>
+
+   });
+
+
+
+
+
+</script>

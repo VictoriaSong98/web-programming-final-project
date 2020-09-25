@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('head'); -%>
+    <style>
+      .logIn{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
+      .title{
+        position: absolute;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50%,-50%);
+      }
+    </style>
+  </head>
+
+  <body>
+      <div style="background-image": "'url('https://www.stlawu.edu/news/st-lawrence-goes-us-news-rankings')'}">
+      </div>
+      <h2 class ="title">SLU Clubs and Theme Houses</h2>
+      <div class="logIn">
+        <form id="signinForm">
+          <label for="text">Username: </label>
+          <input positive: relative type="text" id = "curID" name="id">
+          <button type="submit" id= "signin">Sign In</button>
+          <button type="submit" id= "signup">Sign Up</button>
+
+
+
+
+      </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script>
+
+      $('#signinForm').on('submit', function(event) {
+        event.preventDefault();
+        const form = $(this);
+
+          $.ajax({method: 'post', url: '/login', data: form.serialize()})
+           .done(() => window.location.replace("/clubs"))
+           .fail(error => alert('Could not log in.'));
+      });
+
+      $('#signup').on('click', function(event) {
+
+        const form = $(this);
+        event.preventDefault();
+        window.location.assign('/signup');
+  });
+
+
+
+      </script>
+
+
+
+  </body>
+</html>
